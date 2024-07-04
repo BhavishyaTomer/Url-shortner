@@ -2,11 +2,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import Error from '@/components/ui/error'
 import { Input } from '@/components/ui/input'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BeatLoader } from 'react-spinners'
 import * as Yup from 'yup'
 import useFetch from '@/hooks/use-fetch'
 import { login } from '@/utils/apiAuth'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { urlState } from '@/context'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +25,18 @@ const Login = () => {
     }));
     console.log(formData)
   };
+ const navigate=useNavigate()
+ const [searchParams]=useSearchParams()
+const longLink=searchParams.get("createNew")
  const{data, loading, errors, fn}= useFetch(login,formData)
+ const {fetchUser}=urlState()
+ useEffect(()=>{
+  if(errors==null&& data)
+  {
+    navigate(`/dashboard?${longLink?`createNew=${longLink}`:""}`)
+    fetchUser()
+  }
+},[data,error])
   const handleErrors = async () => {
     console.log("hitting")
     try {

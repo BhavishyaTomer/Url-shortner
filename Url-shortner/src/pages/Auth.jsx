@@ -20,7 +20,7 @@ const Auth = () => {
           <TabsTrigger value="SignUp" className="w-full">sign Up</TabsTrigger>
         </TabsList>
         <TabsContent value="login" className="w-2/4"><Login/></TabsContent>
-        <TabsContent value="SignUp"><Signup/></TabsContent>
+        <TabsContent value="SignUp" className="w-2/4"><Signup/></TabsContent>
       </Tabs>
 
     </div>
