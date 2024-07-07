@@ -1,8 +1,8 @@
-import {useState} from "react";
+import { useState } from "react";
 
 const useFetch = (cb, options = {}) => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(null);
 
   const fn = async (...args) => {
@@ -11,15 +11,14 @@ const useFetch = (cb, options = {}) => {
     try {
       const response = await cb(options, ...args);
       setData(response);
-      setErrors(null);
-    } catch (errors) {
-      setErrors(errors);
+    } catch (error) {
+      setErrors(error);
     } finally {
       setLoading(false);
     }
   };
 
-  return {data, loading, errors, fn};
+  return { data, loading, errors, fn };
 };
 
 export default useFetch;

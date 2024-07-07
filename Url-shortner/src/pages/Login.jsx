@@ -23,22 +23,22 @@ const Login = () => {
       ...prevState,
       [name]: value,
     }));
-    console.log(formData)
   };
  const navigate=useNavigate()
  const [searchParams]=useSearchParams()
 const longLink=searchParams.get("createNew")
  const{data, loading, errors, fn}= useFetch(login,formData)
- const {fetchUser}=urlState()
+ const {user,fetchUser}=urlState()
  useEffect(()=>{
   if(errors==null&& data)
-  {
-    navigate(`/dashboard?${longLink?`createNew=${longLink}`:""}`)
+  { console.log("calling fetch user",user)
     fetchUser()
+    navigate(`/dashboard?${longLink?`createNew=${longLink}`:""}`)
+    
   }
 },[data,error])
   const handleErrors = async () => {
-    console.log("hitting")
+
     try {
       const schema = Yup.object().shape({
         email: Yup.string().email("invalid email").required("email is required"),
