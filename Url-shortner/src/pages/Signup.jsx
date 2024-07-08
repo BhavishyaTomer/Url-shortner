@@ -25,7 +25,7 @@ const Signup = () => {
       ...prevState,
       [name]: files ? files[0] : value,
     }));
-    console.log(formData);
+
   };
 
   const navigate = useNavigate();

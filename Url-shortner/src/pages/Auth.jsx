@@ -12,8 +12,7 @@ const Auth = () => {
   const {isAuthenticated,loading}=urlState()
   const navigate=useNavigate()
   useEffect(()=>{
-    console.log("hitting");
-    console.log(isAuthenticated,loading);
+  
 if(isAuthenticated && !loading){
   navigate(`/dashboard?${longLink?`createNew=${longLink}`:""}`)
 }

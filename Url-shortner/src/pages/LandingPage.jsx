@@ -10,7 +10,7 @@ const LandingPage = () => {
   const navigate=useNavigate()
   const handleSubmit=(e)=>{
   e.preventDefault();
-  console.log(longUrl)
+
   if(longUrl)
   {
   navigate(`/auth?createNew=${longUrl}`)

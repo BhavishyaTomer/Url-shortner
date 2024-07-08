@@ -8,6 +8,7 @@ import Auth from './pages/Auth'
 import Link from './pages/Link'
 import RedirectLink from './pages/RedirectLink'
 import UrlProvider from './context'
+import ProtectedRoutes from './components/ui/ProtectedRoutes'
 function App() {
   const browserRouter=createBrowserRouter([
     {
@@ -18,7 +19,7 @@ function App() {
       },
     {
       path:'/dashboard',
-      element:<Dashboard/>
+      element:<ProtectedRoutes><Dashboard/></ProtectedRoutes>
     },
     {
       path:'/auth',
@@ -27,11 +28,11 @@ function App() {
     ,
     {
       path:'/link/:id',
-      element:<Link/>
+      element:<ProtectedRoutes><Link/></ProtectedRoutes>
     }
     ,{
       path:'/:id',
-      element:<RedirectLink/>
+      element:<ProtectedRoutes><RedirectLink/></ProtectedRoutes>
     }
   ]
     }
